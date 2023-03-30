@@ -1,0 +1,12 @@
+.square{
+  background-color: #000;
+}
+
+#grid{
+  display: flex;
+  flex-wrap: wrap;
+  width: 960px;
+  height: 960px;
+  border: 1px solid #000;
+  margin: 0 auto;
+}
