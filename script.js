@@ -15,6 +15,18 @@ function createGrid(size){
   }
 }
 
+function randomColour(){
+  var red = Math.random() * 256;
+  var blue = Math.random() * 256;
+  var green  = Math.random() * 256;
+  return `rgb(${red}, ${blue}, ${green})`;
+
+}
+
+function colour(){
+  
+}
+
 
 window.onload = () => {
   createGrid(16)
