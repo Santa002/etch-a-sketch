@@ -1,3 +1,8 @@
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
+
 function createGrid(size){
   var element = document.getElementById("grid");
   var width = 960/size;
@@ -9,6 +14,8 @@ function createGrid(size){
       cell.className = 'square';
       cell.style.width = `${width}px`;
       cell.style.height = `${width}px`;
+      cell.addEventListener('mousedown', colour);
+      cell.addEventListener('mouseover', colour);
       row.appendChild(cell);
     }
     element.appendChild(row);
@@ -23,8 +30,10 @@ function randomColour(){
 
 }
 
-function colour(){
-  
+function colour(e){
+  if(e.type === 'mouseover' && !mouseDown){
+    
+  }
 }
 
 
