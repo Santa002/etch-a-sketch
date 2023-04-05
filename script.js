@@ -1,6 +1,15 @@
+let currentSchema = 'colour'
+let currentColor = '#000000';
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
+
+document.getElementById('colourSelection').oninput = (e) => currentColor = e.target.value;
+document.getElementById('draw').onclick = () => currentSchema = 'colour';
+document.getElementById('rgbButton').onclick = () => currentSchema = 'random';
+document.getElementById('eraser').onclick = () => currentSchema = 'erase';
+document.getElementById('reset').onclick = () => createGrid();
+
 
 
 function createGrid(size){
@@ -32,7 +41,16 @@ function randomColour(){
 
 function colour(e){
   if(e.type === 'mouseover' && !mouseDown){
-    
+    return;
+  }
+  if(currentSchema == 'random'){
+    e.target.style.background = randomColour();
+  }
+  else if(currentSchema == 'draw'){
+    e.target.style.background = currentColor;
+  }
+  else if(currentSchema == 'erase'){
+    e.target.style.background = "#FFFFFF";
   }
 }
 
