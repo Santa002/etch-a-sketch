@@ -1,5 +1,6 @@
 let currentSchema = 'colour'
 let currentColor = '#000000';
+let size = 16;
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
@@ -8,18 +9,32 @@ document.getElementById('colourSelection').oninput = (e) => currentColor = e.tar
 document.getElementById('draw').onclick = () => currentSchema = 'colour';
 document.getElementById('rgbButton').onclick = () => currentSchema = 'random';
 document.getElementById('eraser').onclick = () => currentSchema = 'erase';
-document.getElementById('reset').onclick = () => createGrid();
+document.getElementById('reset').onclick = () => reset();
 document.getElementById('slider').onmousemove = (e) => updateValue(e.target.value);
+document.getElementById('slider').onchange = (e) => updateBoard(e.target.value);
 
 function updateValue(size){
   document.getElementById('size').innerHTML = `${size} x ${size}`;
 }
 
+function updateBoard(e){
+  size = e;
+  document.getElementById('grid').innerHTML = '';
+  createGrid(size);
+}
+
+function reset(){
+  document.getElementById('grid').innerHTML = '';
+  document.getElementById('slider').value = 16;
+  size = 16;
+  document.getElementById('size').innerHTML = `${size} x ${size}`;
+  createGrid(size);
+}
 
 
 function createGrid(size){
   var element = document.getElementById("grid");
-  var width = 960/size;
+  var width = 720/size;
   for(let i = 0; i < size; i++){
     var row = document.createElement('div');
     row.className = 'row';
@@ -51,15 +66,15 @@ function colour(e){
   if(currentSchema == 'random'){
     e.target.style.background = randomColour();
   }
-  else if(currentSchema == 'draw'){
+  else if(currentSchema == 'colour'){
     e.target.style.background = currentColor;
   }
   else if(currentSchema == 'erase'){
-    e.target.style.background = "#FFFFFF";
+    e.target.style.background = "#D3D3D3";
   }
 }
 
 
 window.onload = () => {
-  createGrid(16)
+  createGrid(size)
 }
