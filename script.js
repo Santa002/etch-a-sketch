@@ -9,6 +9,11 @@ document.getElementById('draw').onclick = () => currentSchema = 'colour';
 document.getElementById('rgbButton').onclick = () => currentSchema = 'random';
 document.getElementById('eraser').onclick = () => currentSchema = 'erase';
 document.getElementById('reset').onclick = () => createGrid();
+document.getElementById('slider').onmousemove = (e) => updateValue(e.target.value);
+
+function updateValue(size){
+  document.getElementById('size').innerHTML = `${size} x ${size}`;
+}
 
 
 
